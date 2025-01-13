@@ -1,10 +1,10 @@
 package edu.bothell.multi_ui.core;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 
 public class Game {
-    private final int                  MAX_PLAYERS = 3;
+    private final int                  MAX_PLAYERS = 2;
     private final ArrayList<Player>    p;
     private final State                s;
     private int                        turn;
@@ -39,10 +39,16 @@ public class Game {
     
     public boolean isValid(int[] pos, String sId){
         System.out.println("isVAlid?"+s.getIt(pos)+"|" + sId+"|" + active.getSId()+"|");
+        if(active.isDead()){
+            return false;
+        }
         return s.isOpen(pos) && active.getSId().equals(sId);
     }
 
     public char play(int[] pos, String sId){
+        Random ran = new Random();
+        if(ran.nextInt(20) < turn) getActive().die();;
+
         if(!isValid(pos, sId)) return ' ';
         turn++;
         this.s.setIt(active.getChar(), pos[0], pos[1]);
@@ -78,6 +84,5 @@ public class Game {
     public int getTurn(){
         return this.turn;
     }
-
 
 }

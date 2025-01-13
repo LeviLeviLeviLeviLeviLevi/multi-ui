@@ -102,7 +102,6 @@ public class Control {
                 }
             }
         }
-
         return ws;
     }
 

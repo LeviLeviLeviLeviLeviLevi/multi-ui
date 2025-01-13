@@ -4,6 +4,7 @@ public class Player {
 
     private char   chr = 'x';
     private String sId = "";
+    private boolean dead;
 
     public Player(){
     }
@@ -23,4 +24,13 @@ public class Player {
     public String getSId(){
         return this.sId;
     }
+
+    public boolean isDead(){
+        return dead;
+    }
+
+    public void die(){
+        dead = true;
+    }
+
 }
